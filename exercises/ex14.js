@@ -24,6 +24,30 @@ Penny (1¢)
 
 const calculateChange = function (total, cash) {
   // Your code here
+    let change = cash - total;
+  const result = {};
+
+  const denominations = [
+    { name: "twentyDollar", value: 2000 },
+    { name: "tenDollar", value: 1000 },
+    { name: "fiveDollar", value: 500 },
+    { name: "twoDollar", value: 200 },
+    { name: "oneDollar", value: 100 },
+    { name: "quarter", value: 25 },
+    { name: "dime", value: 10 },
+    { name: "nickel", value: 5 },
+    { name: "penny", value: 1 },
+  ];
+
+  for (const denom of denominations) {
+    if (change >= denom.value) {
+      const count = Math.floor(change / denom.value);
+      result[denom.name] = count;
+      change -= count * denom.value;
+    }
+  }
+
+  return result;
 };
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }

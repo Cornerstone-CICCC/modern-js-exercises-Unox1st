@@ -65,3 +65,54 @@ Instruction
 Create a function generateBoard which will return a nested array representing the board, containing the location of two queens.
 Create a function called queenThreat that will indicate whether or not the two queens are positioned so that they attack each other.
 */
+
+const generateBoard = function (whiteQueen, blackQueen) {
+  const board = [];
+
+  for (let y = 0; y < 8; y++) {
+    let row = [];
+    for (let x = 0; x < 8; x++) {
+      row.push(0);
+    }
+    board.push(row);
+  }
+
+  board[whiteQueen[0]][whiteQueen[1]] = 1;
+  board[blackQueen[0]][blackQueen[1]] = 1;
+
+  return board;
+};
+
+const queenThreat = function (board) {
+  let queens = [];
+
+  for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 8; x++) {
+      if (board[y][x] === 1) {
+        queens.push([y, x]);
+      }
+    }
+  }
+
+  const q1 = queens[0];
+  const q2 = queens[1];
+
+  if (q1[0] === q2[0]) return true;
+  if (q1[1] === q2[1]) return true;
+  if (Math.abs(q1[0] - q2[0]) === Math.abs(q1[1] - q2[1])) return true;
+
+  return false;
+};
+
+
+let whiteQueen = [0, 5];
+let blackQueen = [5, 0];
+let board1 = generateBoard(whiteQueen, blackQueen);
+console.log(board1);
+console.log(queenThreat(board1)); 
+
+whiteQueen = [0, 0];
+blackQueen = [5, 7];
+let board2 = generateBoard(whiteQueen, blackQueen);
+console.log(board2);
+console.log(queenThreat(board2)); 

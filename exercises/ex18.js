@@ -24,6 +24,19 @@ Create a function named squareCode that will receive a message, and return the s
 
 const squareCode = function (message) {
   // Put your solution here
+    const text = message.split(" ").join("");
+  const columns = Math.ceil(Math.sqrt(text.length));
+  let result = [];
+
+  for (let col = 0; col < columns; col++) {
+    let word = "";
+    for (let i = col; i < text.length; i += columns) {
+      word += text[i];
+    }
+    result.push(word);
+  }
+
+  return result.join(" ");
 };
 
 console.log(squareCode("chill out")); // clu hlt io

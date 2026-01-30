@@ -8,7 +8,24 @@ Create a function named sumLargestNumbers that will receive an array of numbers 
 
 const sumLargestNumbers = function (data) {
   // Put your solution here
-  return 11;
+  const [largest, secondLargest] = data.reduce(
+    (acc, num) => {
+      let [max1, max2] = acc;
+
+      if (num > max1) {
+        return [num, max1];
+      }
+
+      if (num > max2) {
+        return [max1, num];
+      }
+
+      return acc;
+    },
+    [-Infinity, -Infinity]
+  );
+
+  return largest + secondLargest;
 };
 
 console.log(sumLargestNumbers([1, 10])); // 11
